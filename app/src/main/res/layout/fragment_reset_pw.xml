@@ -153,6 +153,7 @@
         android:textSize="15sp"
         android:fontFamily="@font/gotham_bold"
         android:textAllCaps="false"
+        android:theme="@style/ButtonTheme"
         tools:ignore="MissingConstraints"
         android:background="@drawable/button_background"
         tools:layout_editor_absoluteX="116dp"
