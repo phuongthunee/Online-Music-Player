@@ -21,6 +21,7 @@ public class SignInFragment extends Fragment {
     private TextView resetPassword;
     private FrameLayout frameLayout;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,17 +39,17 @@ public class SignInFragment extends Fragment {
         youDontAlreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setFragment(new SignUpFragment());
             }
         });
         resetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setFragment(new ResetPwFragment());
             }
         });
     }
-    private void setFragment(SignInFragment fragment) {
+    private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(frameLayout.getId(),fragment);
         fragmentTransaction.commit();

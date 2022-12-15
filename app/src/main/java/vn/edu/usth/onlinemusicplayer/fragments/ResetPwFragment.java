@@ -41,17 +41,18 @@ public class ResetPwFragment extends Fragment {
         youAlreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setFragment(new SignInFragment());
 
             }
         });
          youDontAlreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setFragment(new SignUpFragment());
             }
         });
     }
-    private void setFragment(SignInFragment fragment) {
+    private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(frameLayout.getId(),fragment);
         fragmentTransaction.commit();
