@@ -6,14 +6,4 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/goodmorning"
-        android:layout_width="154dp"
-        android:layout_height="35dp"
-        android:text="Good Morning"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="57dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
