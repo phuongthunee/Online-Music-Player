@@ -15,8 +15,8 @@ import vn.edu.usth.onlinemusicplayer.fragments.SignInFragment;
 
 public class SplashScreen extends AppCompatActivity {
     private Handler handler;
+    private Runnable runnable;
 
-    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +26,11 @@ public class SplashScreen extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreen.this, Register.class);
+                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(intent);
                 finish();
                 }
-        }, 3000);
+        }, 5000);
+
     }
 }
