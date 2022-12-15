@@ -123,7 +123,7 @@
         tools:layout_editor_absoluteY="660dp">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/youDontAlreadyHavaAnAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/gotham_bold"

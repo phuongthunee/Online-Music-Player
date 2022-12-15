@@ -16,7 +16,7 @@
         tools:layout_editor_absoluteY="16dp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/resetPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/gotham_bold"
@@ -104,7 +104,7 @@
         tools:layout_editor_absoluteY="652dp">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/youDontAlreadyHaveAnAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/gotham_bold"
