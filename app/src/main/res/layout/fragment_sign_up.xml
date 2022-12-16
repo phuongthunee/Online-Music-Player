@@ -154,8 +154,9 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="564dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/gotham_bold"
         android:text="Sign Up"
@@ -163,11 +164,8 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         android:theme="@style/ButtonTheme"
-        tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="542dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        android:layout_marginTop="565dp"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
