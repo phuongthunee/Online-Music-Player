@@ -56,5 +56,6 @@ public class ResetPwFragment extends Fragment {
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(frameLayout.getId(),fragment);
         fragmentTransaction.commit();
+        fragmentTransaction.setCustomAnimations(R.anim.left, R.anim.left_out);
     }
 }
