@@ -6,4 +6,284 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <LinearLayout android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_account_circle_42" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".100">
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/genres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Genres"
+                    android:textSize="30sp"
+                    tools:ignore="MissingConstraints"/>
+                <GridLayout
+                    android:id="@+id/GridLayout1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:useDefaultMargins="true"
+                    android:columnCount="4"
+                    android:orientation="horizontal"
+                    android:rowCount="3" >
+                    <Button
+                        android:id="@+id/button1"
+                        android:layout_columnWeight="50"
+                        android:layout_column="0"
+                        android:layout_gravity="fill"
+                        android:layout_row="0"
+                        android:text="as" />
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_column="0"
+                        android:layout_gravity="fill"
+                        android:layout_row="1"
+                        android:text="as" />
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_column="0"
+                        android:layout_gravity="fill"
+                        android:layout_row="2"
+                        android:text="as" />
+                    <Button
+                        android:id="@+id/button4"
+                        android:layout_columnWeight="50"
+                        android:layout_column="1"
+                        android:layout_gravity="fill"
+                        android:layout_row="0"
+                        android:text="as" />
+                    <Button
+                        android:id="@+id/button5"
+                        android:layout_column="1"
+                        android:layout_gravity="fill"
+                        android:layout_row="1"
+                        android:text="as" />
+                    <Button
+                        android:id="@+id/button6"
+                        android:layout_column="1"
+                        android:layout_gravity="fill"
+                        android:layout_row="2"
+                        android:text="as" />
+                </GridLayout>
+
+                <TextView
+                    android:id="@+id/hotAlbums"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hot albums"
+                    android:textSize="30sp"
+                    android:layout_marginTop="20dp"
+                    tools:ignore="MissingConstraints"/>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- using linear layout to store multiple view
+                         inside a Horizontal Scroll View -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@color/black">
+
+                        <!-- multiple button views to show a
+                              scrollable horizontal list -->
+                        <Button
+                            android:id="@+id/C"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:text="GeeksforGeeks"
+                            android:padding="4dp"
+                            android:layout_margin="10dp"
+                            android:backgroundTint="@color/white"
+                            android:textColor="@color/black"/>
+
+                        <Button
+                            android:id="@+id/Co"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:layout_margin="10dp"
+                            android:backgroundTint="@color/white"
+                            android:padding="4dp"
+                            android:text="GeeksforGeeks"
+                            android:textColor="@color/black" />
+
+                        <Button
+                            android:id="@+id/L"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:padding="4dp"
+                            android:layout_margin="10dp"
+                            android:backgroundTint="@color/white"
+                            android:text="GeeksforGeeks"
+                            android:textColor="@color/black"/>
+
+                        <Button
+                            android:id="@+id/Ha"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:padding="4dp"
+                            android:layout_margin="10dp"
+                            android:backgroundTint="@color/white"
+                            android:text="GeeksforGeeks"
+                            android:textColor="@color/black"/>
+
+                        <Button
+                            android:id="@+id/Hah"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:padding="4dp"
+                            android:backgroundTint="@color/white"
+                            android:layout_margin="10dp"
+                            android:text="GeeksforGeeks"
+                            android:textColor="@color/black"/>
+
+                        <Button
+                            android:id="@+id/ge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:padding="4dp"
+                            android:layout_margin="10dp"
+                            android:backgroundTint="@color/white"
+                            android:text="GeeksforGeeks"
+                            android:textColor="@color/black"/>
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <TextView
+                    android:id="@+id/newReleases"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="New Releases"
+                    android:textSize="30sp"
+                    android:layout_marginTop="20dp"
+                    tools:ignore="MissingConstraints"/>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- using linear layout to store multiple view
+                         inside a Horizontal Scroll View -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@color/black">
+
+                        <!-- multiple button views to show a
+                              scrollable horizontal list -->
+                        <Button
+                            android:id="@+id/S1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:text="GeeksforGeeks"
+                            android:padding="4dp"
+                            android:layout_margin="10dp"
+                            android:backgroundTint="@color/white"
+                            android:textColor="@color/black"/>
+
+                        <Button
+                            android:id="@+id/S2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:layout_margin="10dp"
+                            android:backgroundTint="@color/white"
+                            android:padding="4dp"
+                            android:text="GeeksforGeeks"
+                            android:textColor="@color/black" />
+
+                        <Button
+                            android:id="@+id/S3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:padding="4dp"
+                            android:layout_margin="10dp"
+                            android:backgroundTint="@color/white"
+                            android:text="GeeksforGeeks"
+                            android:textColor="@color/black"/>
+
+                        <Button
+                            android:id="@+id/S4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:padding="4dp"
+                            android:layout_margin="10dp"
+                            android:backgroundTint="@color/white"
+                            android:text="GeeksforGeeks"
+                            android:textColor="@color/black"/>
+
+                        <Button
+                            android:id="@+id/S5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:padding="4dp"
+                            android:backgroundTint="@color/white"
+                            android:layout_margin="10dp"
+                            android:text="GeeksforGeeks"
+                            android:textColor="@color/black"/>
+
+                        <Button
+                            android:id="@+id/S6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:padding="4dp"
+                            android:layout_margin="10dp"
+                            android:backgroundTint="@color/white"
+                            android:text="GeeksforGeeks"
+                            android:textColor="@color/black"/>
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+            </LinearLayout>
+        </ScrollView>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_weight="0"
+            android:paddingTop="10dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_home_48" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:src="@drawable/ic_baseline_access_time_filled_48" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_favorite_48" />
+        </LinearLayout>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
