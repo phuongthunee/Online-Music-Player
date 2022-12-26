@@ -1,5 +1,6 @@
 package vn.edu.usth.onlinemusicplayer.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,23 +18,25 @@ import vn.edu.usth.onlinemusicplayer.R;
 
 
 public class SignUpFragment extends Fragment {
-    private TextView youAlreadyHaveAnAccount;
+    private TextView SIGNIN;
     private FrameLayout frameLayout;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+        SIGNIN= view.findViewById(R.id.SIGNIN);
+        frameLayout = getActivity().findViewById(R.id.register);
         return view;
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        youAlreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
+        SIGNIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 setFragment(new SignInFragment());
             }
         });

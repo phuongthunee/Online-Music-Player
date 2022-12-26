@@ -19,18 +19,18 @@ import org.w3c.dom.Text;
 import vn.edu.usth.onlinemusicplayer.R;
 
 public class ResetPwFragment extends Fragment {
-    private TextView youAlreadyHaveAnAccount;
-    private TextView youDontAlreadyHaveAnAccount;
+    private TextView SIGNIN;
+    private TextView SIGNUP;
     private FrameLayout frameLayout;
 
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
+        View view = inflater.inflate(R.layout.fragment_reset_pw, container, false);
 
-        youAlreadyHaveAnAccount = view.findViewById(R.id.youAlreadyHaveAnAccount);
-        youDontAlreadyHaveAnAccount= view.findViewById(R.id.youDontAlreadyHaveAnAccount);
+        SIGNIN = view.findViewById(R.id.SIGNIN);
+        SIGNUP= view.findViewById(R.id.SIGNUP);
         frameLayout = getActivity().findViewById(R.id.register);
         return view;
     }
@@ -38,14 +38,13 @@ public class ResetPwFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        youAlreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
+        SIGNIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setFragment(new SignInFragment());
-
             }
         });
-         youDontAlreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
+         SIGNUP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setFragment(new SignUpFragment());
