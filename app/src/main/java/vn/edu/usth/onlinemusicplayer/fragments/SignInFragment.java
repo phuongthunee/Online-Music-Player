@@ -9,21 +9,24 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.security.ConfirmationNotAvailableException;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import vn.edu.usth.onlinemusicplayer.MainActivity;
 import vn.edu.usth.onlinemusicplayer.R;
-import vn.edu.usth.onlinemusicplayer.Register;
 
 public class SignInFragment extends Fragment {
     private TextView SIGNUP;
@@ -47,7 +50,7 @@ public class SignInFragment extends Fragment {
 
         email = view.findViewById(R.id.email);
         password = view.findViewById(R.id.password);
-        signIn = view.findViewById(R.id.signIn);
+        signIn = view.findViewById(R.id.reset);
 
         mAuth = FirebaseAuth.getInstance();
         return view;
@@ -102,7 +105,40 @@ public class SignInFragment extends Fragment {
             }
         });
 
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signInWithFirebase();
+                signIn.setEnabled(false);
+                signIn.setTextColor(getResources().getColor(R.color.white));
+            }
+        });
     }
+
+    private void signInWithFirebase() {
+        if (email.getText().toString().matches("[a-zA]-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
+            mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                getActivity().startActivity(intent);
+                                getActivity().finish();
+                            } else {
+                                Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                signIn.setEnabled(true);
+                                signIn.setTextColor(getResources().getColor(R.color.main));
+                            }
+                        }
+                    });
+        } else {
+            email.setError("Invalid Email, please check again.");
+            signIn.setEnabled(true);
+            signIn.setTextColor(getResources().getColor(R.color.main));
+        }
+    }
+
     private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(frameLayout.getId(),fragment);
@@ -111,10 +147,12 @@ public class SignInFragment extends Fragment {
     }
     private void checkInputs() {
         if (!email.getText().toString().isEmpty()) {
-            if (!email.getText().toString().isEmpty()) {
-
+            if (!password.getText().toString().isEmpty()) {
+                signIn.setEnabled(true);
+                signIn.setTextColor(getResources().getColor(R.color.main));
             } else {
-
+                signIn.setEnabled(false);
+                signIn.setTextColor(getResources().getColor(R.color.white));
             }
         } else {
             signIn.setEnabled(false);

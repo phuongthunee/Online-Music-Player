@@ -74,7 +74,7 @@
                         android:layout_row="1"
                         android:text="as" />
                     <Button
-                        android:id="@+id/signIn"
+                        android:id="@+id/reset"
                         android:layout_column="0"
                         android:layout_gravity="fill"
                         android:layout_row="2"

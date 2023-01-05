@@ -51,10 +51,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:id="@+id/email"
         android:layout_width="318dp"
         android:layout_height="62dp"
         android:layout_marginStart="30dp"
@@ -66,23 +63,9 @@
         android:hint="Email address or username"
         android:inputType="textEmailAddress"
         android:padding="20dp"
-        android:textColorHint="#d0d1d4" />
-
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="318dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="130dp"
-        android:layout_marginEnd="60dp"
-        android:background="@drawable/text_background"
-        android:ems="10"
-        android:hint="New password"
-        android:inputType="textPassword"
-        android:padding="20dp"
         android:textColorHint="#d0d1d4"
-        android:fontFamily="@font/gotham_bold"
         app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -155,7 +138,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/signIn"
+        android:id="@+id/reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -170,6 +153,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginTop="400dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/responseMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="552dp"
+        android:fontFamily="@font/book_italic"
+        android:text="PLEASE CHECK YOUR EMAIL..."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.587"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
 
