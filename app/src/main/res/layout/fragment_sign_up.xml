@@ -35,7 +35,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/userName"
         android:layout_width="318dp"
         android:layout_height="62dp"
         android:layout_marginStart="30dp"
@@ -54,10 +54,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/password"
         android:layout_width="318dp"
         android:layout_height="62dp"
-        android:layout_marginStart="90dp"
+        android:layout_marginStart=
+            "90dp"
         android:layout_marginTop="184dp"
         android:layout_marginEnd="90dp"
         android:background="@drawable/text_background"
@@ -73,6 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
+        android:id="@+id/email"
         android:layout_width="318dp"
         android:layout_height="62dp"
         android:layout_marginStart="60dp"
@@ -91,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editTextTextPasswordCF"
+        android:id="@+id/passwordCF"
         android:layout_width="318dp"
         android:layout_height="62dp"
         android:layout_marginStart="120dp"
@@ -153,7 +155,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/signUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="564dp"

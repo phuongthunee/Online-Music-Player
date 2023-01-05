@@ -1,6 +1,7 @@
 package vn.edu.usth.onlinemusicplayer.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,7 +15,9 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import vn.edu.usth.onlinemusicplayer.MainActivity;
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.Register;
 
 public class SignInFragment extends Fragment {
     private TextView SIGNUP;

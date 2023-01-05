@@ -25,6 +25,7 @@ import vn.edu.usth.onlinemusicplayer.fragments.SignUpFragment;
 public class MainActivity extends AppCompatActivity {
     private ImageView informations;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
