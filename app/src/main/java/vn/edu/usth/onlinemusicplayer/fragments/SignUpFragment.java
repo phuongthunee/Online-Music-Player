@@ -1,6 +1,7 @@
 package vn.edu.usth.onlinemusicplayer.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,7 +18,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.concurrent.Executor;
+
+import vn.edu.usth.onlinemusicplayer.MainActivity;
 import vn.edu.usth.onlinemusicplayer.R;
 
 
@@ -29,6 +39,7 @@ public class SignUpFragment extends Fragment {
     private EditText password;
     private EditText passwordCF;
     private Button signUp;
+    private FirebaseAuth mAuth;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -122,6 +133,44 @@ public class SignUpFragment extends Fragment {
 
             }
         });
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signUpWithFirebase();
+                signUp.setEnabled(false);
+                signUp.setTextColor(getResources().getColor(R.color.white));
+            }
+        });
+    }
+
+    private void signUpWithFirebase() {
+        if (email.getText().toString().matches("[a-zA]-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
+            if (password.getText().toString().equals(passwordCF.getText().toString())) {
+                mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                        .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                                    getActivity().startActivity(intent);
+                                    getActivity().finish();
+                                } else {
+                                    Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    signUp.setEnabled(true);
+                                    signUp.setTextColor(getResources().getColor(R.color.main));
+                                }
+                            }
+                        });
+            } else {
+                passwordCF.setError("Please check again.");
+                signUp.setEnabled(true);
+                signUp.setTextColor(getResources().getColor(R.color.main));
+            }
+        } else {
+            email.setError("Invalid Email, please check again.");
+            signUp.setEnabled(true);
+            signUp.setTextColor(getResources().getColor(R.color.main));
+        }
     }
 
     private void setFragment(Fragment fragment) {
