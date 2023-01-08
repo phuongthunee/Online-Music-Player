@@ -17,7 +17,6 @@ import vn.edu.usth.onlinemusicplayer.fragments.SignInFragment;
 
 public class SplashScreen extends AppCompatActivity {
     private Handler handler;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +24,10 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         handler = new Handler();
-        mAuth = FirebaseAuth.getInstance();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = null;
-                if (mAuth.getCurrentUser().getUid() !=null) {
-                    intent = new Intent(SplashScreen.this, MainActivity.class);
-                } else {
-                    intent = new Intent(SplashScreen.this, Register.class);
-                }
+                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(intent);
                 finish();
                 }

@@ -26,7 +26,6 @@ import vn.edu.usth.onlinemusicplayer.fragments.SignUpFragment;
 public class MainActivity extends AppCompatActivity {
     private ImageView account;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         account = findViewById(R.id.account);
         account.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Register.class);
                 startActivity(intent);
             }
