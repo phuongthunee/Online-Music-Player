@@ -31,7 +31,7 @@
          android:id="@+id/viewPagerCD"
          android:layout_width="275dp"
          android:layout_height="275dp"
-         android:layout_below="@+id/toolbarMusicPlayer"
+         android:layout_below="@+id/MusicPlayer"
          android:layout_centerHorizontal="true"
          android:layout_marginTop="56dp" />
 
@@ -91,7 +91,7 @@
             android:id="@+id/realtime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/seekBartime"
+            android:layout_below="@+id/time"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp">
