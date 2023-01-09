@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import vn.edu.usth.onlinemusicplayer.fragments.SignInFragment;
 
 public class Register extends AppCompatActivity {
-    private ImageView back;
     private FrameLayout frameLayout;
+    private ImageView back;
 
     @SuppressLint("MissingInflatedId")
     @Override

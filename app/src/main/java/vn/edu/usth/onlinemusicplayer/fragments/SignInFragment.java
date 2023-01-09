@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import vn.edu.usth.onlinemusicplayer.MainActivity;
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.Register;
 
 public class SignInFragment extends Fragment {
     private TextView SIGNUP;

@@ -21,10 +21,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Executor;
 
 import vn.edu.usth.onlinemusicplayer.MainActivity;
@@ -34,12 +40,15 @@ import vn.edu.usth.onlinemusicplayer.R;
 public class SignUpFragment extends Fragment {
     private TextView SIGNIN;
     private FrameLayout frameLayout;
+
     private EditText userName;
     private EditText email;
     private EditText password;
     private EditText passwordCF;
     private Button signUp;
+
     private FirebaseAuth mAuth;
+    private FirebaseFirestore database;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -53,6 +62,9 @@ public class SignUpFragment extends Fragment {
         password = view.findViewById(R.id.password);
         passwordCF = view.findViewById(R.id.passwordCF);
         signUp =  view.findViewById(R.id.signUp);
+
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseFirestore.getInstance();
         return view;
     }
     @Override
@@ -151,9 +163,29 @@ public class SignUpFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                                    getActivity().startActivity(intent);
-                                    getActivity().finish();
+                                    Map<String, Object> user = new HashMap<>();
+                                    user.put("userName", userName.getText().toString());
+                                    user.put("email", email.getText().toString());
+                                    database.collection("users")
+                                            .document(task.getResult().getUser().getUid())
+                                            .set(user)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                    getActivity().startActivity(intent);
+                                                    getActivity().finish();
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    signUp.setEnabled(true);
+                                                    signUp.setTextColor(getResources().getColor(R.color.main));
+                                                }
+                                            });
+
                                 } else {
                                     Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                     signUp.setEnabled(true);

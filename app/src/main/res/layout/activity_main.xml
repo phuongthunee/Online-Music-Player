@@ -27,10 +27,10 @@
                 android:textSize="35sp"
                 android:gravity="left|center"/>
             <ImageView
-                android:id="@+id/informations"
+                android:id="@+id/account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_account_circle_42" />
+                android:src="@drawable/ic_baseline_account_circle_42"/>
         </LinearLayout>
 
         <ScrollView
@@ -282,22 +282,34 @@
             android:gravity="center"
             android:layout_weight="0"
             android:paddingTop="10dp">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:src="@drawable/ic_baseline_home_48" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/ic_baseline_search_48"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:src="@drawable/ic_baseline_access_time_filled_48" />
-            android:src="@drawable/ic_baseline_search_48" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:src="@drawable/ic_baseline_favorite_48" />
-            android:src="@drawable/ic_baseline_access_time_filled_48" />
         </LinearLayout>
     </LinearLayout>
 

@@ -11,11 +11,12 @@ import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import vn.edu.usth.onlinemusicplayer.fragments.SignInFragment;
 
 public class SplashScreen extends AppCompatActivity {
     private Handler handler;
-    private Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
