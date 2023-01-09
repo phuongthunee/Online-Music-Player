@@ -8,14 +8,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import vn.edu.usth.onlinemusicplayer.fragments.SignInFragment;
 
 public class Register extends AppCompatActivity {
-    private FrameLayout frameLayout;
-    private ImageView back;
+    private Button signUp;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -23,9 +23,6 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        frameLayout = findViewById(R.id.register);
-
-        setFragment(new SignInFragment());
         //back = findViewById(R.id.back);
         //back.setOnClickListener(new View.OnClickListener() {
           //  @Override
@@ -34,11 +31,5 @@ public class Register extends AppCompatActivity {
                 //startActivity(intent);
             //}
         //});
-    }
-
-    private void setFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(frameLayout.getId(),fragment);
-        fragmentTransaction.commit();
     }
 }

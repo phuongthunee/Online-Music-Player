@@ -48,7 +48,7 @@ public class SignUpFragment extends Fragment {
     private Button signUp;
 
     private FirebaseAuth mAuth;
-    private FirebaseFirestore database;
+    FirebaseFirestore database;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -167,10 +167,7 @@ public class SignUpFragment extends Fragment {
                                     Map<String, Object> user = new HashMap<>();
                                     user.put("userName", userName.getText().toString());
                                     user.put("email", email.getText().toString());
-                                    database.collection("users")
-                                            .document(task.getResult().getUser().getUid())
-                                            .set(user)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    database.collection("users").addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void unused) {
                                                     Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -178,6 +175,8 @@ public class SignUpFragment extends Fragment {
                                                     getActivity().finish();
                                                 }
                                             })
+                                            .document(task.getResult().getUser().getUid())
+                                            .set(user)
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
