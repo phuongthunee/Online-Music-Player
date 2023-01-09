@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -26,10 +27,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executor;
 
+import vn.edu.usth.onlinemusicplayer.model.User;
+
 public class Register extends AppCompatActivity {
     private Button signUp;
     private TextView SIGNIN;
-    private FrameLayout frameLayout;
 
     private EditText userName;
     private EditText email;
@@ -37,18 +39,7 @@ public class Register extends AppCompatActivity {
     private EditText passwordCF;
 
     private FirebaseAuth mAuth;
-    FirebaseFirestore database;
-
-    private void initView(){
-        userName = findViewById(R.id.userName);
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        passwordCF = findViewById(R.id.passwordCF);
-        signUp =  findViewById(R.id.signUp);
-
-        mAuth = FirebaseAuth.getInstance();
-        database = FirebaseFirestore.getInstance();
-    }
+    private DatabaseReference mDatabase;
 
 
     @SuppressLint("MissingInflatedId")
@@ -56,282 +47,60 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        initView();
+        userName = findViewById(R.id.userName);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        passwordCF = findViewById(R.id.passwordCF);
+        signUp = findViewById(R.id.signUp);
 
-        SIGNIN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Register.this, Register.class);
-                startActivity(intent);
-//                setFragment(new SignInFragment());
-            }
-        });
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        userName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                checkInputs();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        email.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                checkInputs();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        password.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                checkInputs();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        passwordCF.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                checkInputs();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signUpWithFirebase();
-                signUp.setEnabled(false);
-                signUp.setTextColor(getResources().getColor(R.color.white));
+                String txtUsername = userName.getText().toString();
+                String txtEmail = email.getText().toString();
+                String txtPassword = password.getText().toString();
+                String txtPasswordCF = passwordCF.getText().toString();
+
+                if (TextUtils.isEmpty(txtUsername) || TextUtils.isEmpty(txtEmail) || TextUtils.isEmpty(txtPassword) || TextUtils.isEmpty(txtPasswordCF)) {
+                    Toast.makeText(Register.this,"Please enter informations", Toast.LENGTH_SHORT).show();
+                } else if (txtPassword.length() < 8) {
+                    Toast.makeText(Register.this, "Password too short", Toast.LENGTH_SHORT).show();;
+                } else {
+                    registerUser(txtUsername, txtEmail, txtPassword, txtPasswordCF);
+                }
             }
         });
     }
-//
-//
-//
-//
-//
-//    @SuppressLint("MissingInflatedId")
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
-//        SIGNIN= view.findViewById(R.id.SIGNIN);
-//        frameLayout = getActivity().findViewById(R.id.register);
-//
-//        userName = view.findViewById(R.id.userName);
-//        email = view.findViewById(R.id.email);
-//        password = view.findViewById(R.id.password);
-//        passwordCF = view.findViewById(R.id.passwordCF);
-//        signUp =  view.findViewById(R.id.signUp);
-//
-//        mAuth = FirebaseAuth.getInstance();
-//        database = FirebaseFirestore.getInstance();
-//        return view;
-//    }
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//
-//        SIGNIN.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                setFragment(new SignInFragment());
-//            }
-//        });
-//
-//        userName.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                checkInputs();
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//
-//            }
-//        });
-//
-//        email.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                checkInputs();
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//
-//            }
-//        });
-//
-//        password.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                checkInputs();
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//
-//            }
-//        });
-//
-//        passwordCF.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                checkInputs();
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//
-//            }
-//        });
-//        signUp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                signUpWithFirebase();
-//                signUp.setEnabled(false);
-//                signUp.setTextColor(getResources().getColor(R.color.white));
-//            }
-//        });
-//    }
 
-    private void signUpWithFirebase() {
-        if (email.getText().toString().matches("[a-zA]-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
-            if (password.getText().toString().equals(passwordCF.getText().toString())) {
-                mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                        .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Map<String, Object> user = new HashMap<>();
-                                    user.put("userName", userName.getText().toString());
-                                    user.put("email", email.getText().toString());
-                                    database.collection("users").addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void unused) {
-                                                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                                                    getActivity().startActivity(intent);
-                                                    getActivity().finish();
-                                                }
-                                            })
-                                            .document(task.getResult().getUser().getUid())
-                                            .set(user)
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                    signUp.setEnabled(true);
-                                                    signUp.setTextColor(getResources().getColor(R.color.main));
-                                                }
-                                            });
+    private void registerUser(String userName, String email, String password, String passwordCF) {
+        mAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("userName", userName);
+                map.put("email", email);
+                map.put("id", mAuth.getCurrentUser().getUid());
 
-                                } else {
-                                    Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                    signUp.setEnabled(true);
-                                    signUp.setTextColor(getResources().getColor(R.color.main));
-                                }
-                            }
-                        });
-            } else {
-                passwordCF.setError("Please check again.");
-                signUp.setEnabled(true);
-                signUp.setTextColor(getResources().getColor(R.color.main));
-            }
-        } else {
-            email.setError("Invalid Email, please check again.");
-            signUp.setEnabled(true);
-            signUp.setTextColor(getResources().getColor(R.color.main));
-        }
-    }
-
-//    private void setFragment(Fragment fragment) {
-//        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-//        fragmentTransaction.replace(frameLayout.getId(),fragment);
-//        fragmentTransaction.commit();
-//        fragmentTransaction.setCustomAnimations(R.anim.left, R.anim.right_out);
-//    }
-
-    private void checkInputs() {
-        if (!userName.getText().toString().isEmpty()) {
-            if (!email.getText().toString().isEmpty()) {
-                if (!password.getText().toString().isEmpty() && password.getText().toString().length() >= 8) {
-                    if (!passwordCF. getText().toString().isEmpty()) {
-                        signUp.setEnabled(true);
-                        signUp.setTextColor(getResources().getColor(R.color.main));
-                    } else {
-                        signUp.setEnabled(false);
-                        signUp.setTextColor(getResources().getColor(R.color.white));
+                mDatabase.child("Users").child(mAuth.getCurrentUser().getUid()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Register.this, "hi", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Register.this, MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+                        }
                     }
-                } else {
-                    signUp.setEnabled(false);
-                    signUp.setTextColor(getResources().getColor(R.color.white));
-                }
-            } else {
-                signUp.setEnabled(false);
-                signUp.setTextColor(getResources().getColor(R.color.white));
+                });
             }
-        } else {
-            signUp.setEnabled(false);
-            signUp.setTextColor(getResources().getColor(R.color.white));
-        }
-    }
+    }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Register.this, e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        })
 }
