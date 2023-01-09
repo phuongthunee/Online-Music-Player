@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 
 public class SplashScreen extends AppCompatActivity {
-    private Handler handler;
     private TextView SIGNIN, SIGNUP;
 
     @Override
@@ -20,25 +19,16 @@ public class SplashScreen extends AppCompatActivity {
         SIGNUP = findViewById(R.id.SIGNUP);
         SIGNIN = findViewById(R.id.SIGNIN);
 
-        handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                }
-        }, 3000);
         SIGNUP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SplashScreen.this, Register.class));
+                startActivity(new Intent(SplashScreen.this, Register.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
         SIGNIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SplashScreen.this, Login.class));
+                startActivity(new Intent(SplashScreen.this, Login.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
     }
