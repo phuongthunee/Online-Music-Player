@@ -26,11 +26,13 @@
                 android:text="Hello"
                 android:textSize="35sp"
                 android:gravity="left|center"/>
+
             <ImageView
                 android:id="@+id/account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_account_circle_42"/>
+                android:src="@drawable/ic_baseline_account_circle_42" />
+
         </LinearLayout>
 
         <ScrollView
