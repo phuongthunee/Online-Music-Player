@@ -57,6 +57,7 @@ public class SignUpFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         SIGNIN= view.findViewById(R.id.SIGNIN);
         frameLayout = getActivity().findViewById(R.id.register);
+
         userName = view.findViewById(R.id.userName);
         email = view.findViewById(R.id.email);
         password = view.findViewById(R.id.password);

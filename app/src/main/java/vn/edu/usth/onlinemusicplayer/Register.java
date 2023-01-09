@@ -26,14 +26,14 @@ public class Register extends AppCompatActivity {
         frameLayout = findViewById(R.id.register);
 
         setFragment(new SignInFragment());
-        back = findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Register.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+        //back = findViewById(R.id.back);
+        //back.setOnClickListener(new View.OnClickListener() {
+          //  @Override
+            //public void onClick(View v) {
+              //  Intent intent = new Intent(Register.this, MainActivity.class);
+                //startActivity(intent);
+            //}
+        //});
     }
 
     private void setFragment(Fragment fragment) {
