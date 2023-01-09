@@ -1,5 +1,6 @@
 package vn.edu.usth.onlinemusicplayer.fragments;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -23,7 +24,8 @@ public class SearchFragment extends Fragment {
     View view;
     androidx.appcompat.widget.Toolbar toolbarSearch;
     RecyclerView searchRecycler;
-    TextView search;
+    TextView Search;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,7 +33,7 @@ public class SearchFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_search,container, false);
         toolbarSearch = view.findViewById(R.id.toolbarSearch);
         searchRecycler = view.findViewById(R.id.searchRecycler);
-        search = view.findViewById(R.id.search);
+        View search = view.findViewById(R.id.search);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbarSearch);
         setHasOptionsMenu(true);
         return view;
@@ -56,13 +58,33 @@ public class SearchFragment extends Fragment {
                 }
                 return true;
             }
+
+            private void Search(String s) {
+            }
         });
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    private void Search(String query) {
 
-    }
+    public class SearchFragment extends AppCompatActivity {
+        private TextView Search;
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.fragment_search);
+
+            Search = findViewById(R.id.search);
+
+            Search.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(SearchFragment.this, Search.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                }
+            });
+
+        }
+    }}
 
 
-}
+
