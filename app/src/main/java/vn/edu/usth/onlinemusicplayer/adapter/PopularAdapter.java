@@ -19,12 +19,12 @@ import java.util.ArrayList;
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<Popular> arrayPopularList;
+    ArrayList<Popular> PopularListInternet;
     View view;
 
-    public PopularAdapter(Context context, ArrayList<Popular> arrayPopularList ) {
+    public PopularAdapter(Context context, ArrayList<Popular> PopularListInternet ) {
         this.context = context;
-        this.arrayPopularList = ArrayPopularlist;
+        this.PopularListInternet = PopularListInternet;
     }
 
     @NonNull
@@ -37,14 +37,14 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull PopularAdapter.ViewHolder holder, final int position) {
-        Popular popular = arrayPopularlist.get(position);
-        holder.txtPopularName.setText(Popular.getPopularName());
+        Popular popular = PopularListInternet.get(position);
+        holder.PopularName.setText(Popular.getPopularName());
         Picasso.get(/*context*/).load(Popular.getPopularImage()).into(holder.imgPopular);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SongPlaylistActivity.class);
-                intent.putExtra("printPopularName", arrayPopularList.get(position));
+                intent.putExtra("printPopularName", PopularListInternet.get(position));
                 context.startActivity(intent);
             }
         });
@@ -52,16 +52,16 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return arrayPopularList != null ? arrayPopularList.size() : 0;
+        return PopularListInternet != null ? PopularListInternet.size() : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgPopular;
-        TextView txtPopularName;
+        TextView PopularName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imgPopular = itemView.findViewById(R.id.imageviewPopular);
-            txtPopularName = itemView.findViewById(R.id.textviewPopular);
+            PopularName = itemView.findViewById(R.id.textviewPopular);
         }
     }}
 

@@ -23,12 +23,12 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
     public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHolder>{
 
         Context context;
-        ArrayList<PlaylistModel> ArrayPlaylist;
+        ArrayList<Playlist> PlaylistInternet;
         View view;
 
-        public PlaylistAdapter(Context context, ArrayList<PlaylistModel> ArrayPlaylist) {
+        public PlaylistAdapter(Context context, ArrayList<Playlist> PlaylistInternet) {
             this.context = context;
-            this.ArrayPlaylist = ArrayPlaylist;
+            this.PlaylistInternet = PlaylistInternet;
         }
 
         @NonNull
@@ -41,14 +41,14 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-            PlaylistModel Playlist = ArrayPlaylist.get(position);
-            holder.txtPlaylistName.setText(Playlist.getPlaylistName());
+            Playlist Playlist = PlaylistInternet.get(position);
+            holder.PlaylistName.setText(Playlist.getPlaylistName());
             Picasso.get().load(Playlist.getPlaylistImage()).into(holder.imgPlaylist);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, PlaylistSongActivity.class);
-                    intent.putExtra("intentPlaylist", ArrayPlaylist.get(position));
+                    intent.putExtra("intentPlaylist", PlaylistInternet.get(position));
                     context.startActivity(intent);
                 }
             });
@@ -56,16 +56,16 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
 
         @Override
         public int getItemCount() {
-            return ArrayPlaylist != null ? ArrayPlaylist.size() : 0;
+            return PlaylistInternet != null ? PlaylistInternet.size() : 0;
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder{
             ImageView imgPlaylist;
-            TextView txtPlaylistName;
+            TextView PlaylistName;
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
                 imgPlaylistlaylist = itemView.findViewById(R.id.imageviewPlaylist);
-                txtPlaylistName = itemView.findViewById(R.id.textviewPlaylist);
+                PlaylistName = itemView.findViewById(R.id.textviewPlaylist);
             }
         }
 

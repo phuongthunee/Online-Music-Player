@@ -20,13 +20,13 @@ import java.util.ArrayList;
 public class PlaylistLibraryAdapter  extends RecyclerView.Adapter<PlaylistLibraryAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<PlaylistLibrary> arrayPlaylistLibrary;
+    ArrayList <PlaylistLibrary> PlaylistLibraryInternet;
     View view;
     private String Username;
 
-    public PlaylistLibraryAdapter(Context context, ArrayList<PlaylistLibrary> arrayPlaylistLibrary, String Username) {
+    public PlaylistLibraryAdapter(Context context, ArrayList<PlaylistLibrary> PlaylistLibraryInternet, String Username) {
         this.context = context;
-        this.arrayPlaylistLibrary = arrayPlaylistLibrary;
+        this.PlaylistLibraryInternet = PlaylistLibraryInternet;
         this.Username = Username;
     }
 
@@ -40,15 +40,15 @@ public class PlaylistLibraryAdapter  extends RecyclerView.Adapter<PlaylistLibrar
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        PlaylistLibrary playlistlibrary = arrayPlaylistLibrary.get(position);
-        holder.txtPlaylistLibraryName.setText(PlaylistLibrary.getPlaylistLibraryName());
+        PlaylistLibrary playlistlibrary = PlaylistLibraryInternet.get(position);
+        holder.PlaylistLibraryName.setText(PlaylistLibrary.getPlaylistLibraryName());
         holder.txtUsername.setText("Playlist's "+ Username);
         Picasso.get().load(PlayListLibrary.getPlaylistLibraryImage()).into(holder.imgPlaylistLibrary);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, SongPlaylistActivity.class);
-                intent.putExtra("PlaylistLibraryId", arrayPlaylistLibrary.get(position));
+                intent.putExtra("PlaylistLibraryId", PlaylistLibraryInternet.get(position));
                 context.startActivity(intent);
             }
         });
@@ -58,7 +58,7 @@ public class PlaylistLibraryAdapter  extends RecyclerView.Adapter<PlaylistLibrar
 
                 AlertDialog alertDialog = new AlertDialog.Builder(context)
                         .setTitle("Delete Library")
-                        .setMessage("Do you want delete Library"+thuVienPlayList.getPlaylistLibraryName()+" ?")
+                        .setMessage("Do you want delete Library"+PlayListLibrary.getPlaylistLibraryName()+" ?")
                         .setPositiveButton("Delete", null)
                         .setNegativeButton("Cancel", null)
                         .show();
@@ -135,17 +135,17 @@ public class PlaylistLibraryAdapter  extends RecyclerView.Adapter<PlaylistLibrar
 
     @Override
     public int getItemCount() {
-        return arrayPlaylistLibrary != null ? arrayPlaylistLibrary.size() : 0;
+        return PlaylistLibraryInternet != null ? PlaylistLibraryInternet.size() : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgPlaylistLibrary;
-        TextView txtPlaylistLibrary, txtUsername;
+        TextView PlaylistLibrary, Username;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imgPlaylistLibrary = view.findViewById(R.id.imageviewPlaylistLibrary);
-            txtPlaylistLibrary = view.findViewById(R.id.textviewPlaylistLibrary);
-            txtUsername = view.findViewById(R.id.txtUsetname);
+            PlaylistLibrary = view.findViewById(R.id.textviewPlaylistLibrary);
+            Username = view.findViewById(R.id.Usetname);
         }
 
     }

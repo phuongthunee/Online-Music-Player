@@ -14,18 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import vn.edu.usth.onlinemusicplayer.SongPlaylist;
 import vn.edu.usth.onlinemusicplayer.model.SingerLibrary;
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.model.Trending;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 public class SingerLibraryAdapter extends RecyclerView.Adapter<SingerLibraryAdapter.ViewHolder>{
 
     Context context;
-    ArrayList<Singer> arraySinger;
+    ArrayList <SingerLibrary> SingerLibraryInternet;
     View view;
 
-    public SingerLibraryAdapter(Context context, ArrayList<Singer> arraySinger) {
+    public SingerLibraryAdapter(Context context, ArrayList <SingerLibrary> SingerLibraryInternet) {
         this.context = context;
-        this.arraySinger = arraySinger;
+        this.SingerLibraryInternet = SingerLibraryInternet;
     }
 
     @NonNull
@@ -38,14 +40,14 @@ public class SingerLibraryAdapter extends RecyclerView.Adapter<SingerLibraryAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
-        Singer Singer = arraySinger.get(position);
-        holder.txtSingerName.setText(Singer.getSingerName());
+        SingerLibrary Singer = SingerLibraryInternet.get(position);
+        holder.SingerName.setText(Singer.getSingerName());
         Picasso.get(/*context*/).load(Singer.getSingerImage()).into(holder.imgSinger);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SongPlaylistActivity.class);
-                intent.putExtra("printSinger", arraySinger.get(position));
+                intent.putExtra("printSinger", SingerLibraryInternet.get(position));
                 context.startActivity(intent);
             }
         });
@@ -59,11 +61,11 @@ public class SingerLibraryAdapter extends RecyclerView.Adapter<SingerLibraryAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         de.hdodenhof.circleimageview.CircleImageView imgSinger;
-        TextView txtSingerName;
+        TextView SingerName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imgSinger = itemView.findViewById(R.id.imageviewSingerLibrary);
-            txtSingerName = itemView.findViewById(R.id.textviewSingerLibrary);
+            SingerName = itemView.findViewById(R.id.textviewSingerLibrary);
         }
     }
 

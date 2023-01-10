@@ -27,12 +27,12 @@ import vn.edu.usth.onlinemusicplayer.model.SongLibraryPlaylist;
 public class CreateSongLibraryAdapter extends RecyclerView.Adapter<CreateSongLibraryAdapter.ViewHolder>{
 
     Context context;
-    ArrayList<SongLibraryPlaylist> ArraySong;
+    ArrayList <SongLibraryPlaylist> SongInternet;
     int LibraryId;
 
-    public CreateSongLibraryAdapter(Context context, ArrayList <Song> ArraySong, int LibraryId) {
+    public CreateSongLibraryAdapter(Context context, ArrayList <SongLibraryList> SongInternet, int LibraryId) {
         this.context = context;
-        this.ArraySong = arraySong;
+        this.SongInternet = SongInternet;
         this.LibraryId = LibraryId;
     }
 
@@ -46,7 +46,7 @@ public class CreateSongLibraryAdapter extends RecyclerView.Adapter<CreateSongLib
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Song Song = ArraySong.get(position);
+        Song Song = SongInternet.get(position);
         holder.SongName.setText(Song.getSongName());
         holder.SingerName.setText(Song.getSingerName());
         Picasso.get(/*context*/).load(Song.getSongImage()).into(holder.imgSearch);
@@ -55,7 +55,7 @@ public class CreateSongLibraryAdapter extends RecyclerView.Adapter<CreateSongLib
             public void onClick(View v) {
                 CreateDataSongLibrary(LibraryId, Song.getSongId(), Song.getSongName(),Song.getSingerName(),
                         Song.getSongImage(), Song.getSongLink());
-                UpdateSongImage(LibraryId, ArraySong.get(position).getSongImgage());
+                UpdateSongImage(LibraryId, SongInternet.get(position).getSongImgage());
             }
         });
 
@@ -108,7 +108,7 @@ public class CreateSongLibraryAdapter extends RecyclerView.Adapter<CreateSongLib
 
     @Override
     public int getItemCount() {
-        return arraySong.size();
+        return SongInterne.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -119,8 +119,8 @@ public class CreateSongLibraryAdapter extends RecyclerView.Adapter<CreateSongLib
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            SongName = itemView.findViewById(R.id.txtSongPlaylistName);
-            SingerName = itemView.findViewById(R.id.txtSongPlayListSinger);
+            SongName = itemView.findViewById(R.id.SongPlaylistName);
+            SingerName = itemView.findViewById(R.id.SongPlayListSinger);
             imgSearch = itemView.findViewById(R.id.imgSearch);
             imgCreateSong = itemView.findViewById(R.id.imgCreateSong);
 

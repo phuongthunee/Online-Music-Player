@@ -20,12 +20,12 @@ import java.util.ArrayList;
 
 public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder> {
     Context context;
-    ArrayList<Singer> arraySinger;
+    ArrayList <Singer> SingerInternet;
     View view;
 
-    public SingerAdapter(Context context, ArrayList<Singer> arraySinger) {
+    public SingerAdapter(Context context, ArrayList<Singer> SingerInternet) {
         this.context = context;
-        this.arraySinger = arraySinger;
+        this.SingerInternet = SingerInternet;
     }
 
     @NonNull
@@ -38,14 +38,14 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Singer Singer = arraySinger.get(position);
-        holder.txtSingerName.setText(Singer.getSingerName());
+        Singer Singer = SingerInternet.get(position);
+        holder.SingerName.setText(Singer.getSingerName());
         Picasso.get(/*context*/).load(Singer.getSingerImage()).into(holder.imgSinger);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SongPlaylistActivity.class);
-                intent.putExtra("printSingerName", arraySinger.get(position));
+                intent.putExtra("printSingerName", SingerInternet.get(position));
                 context.startActivity(intent);
             }
         });
@@ -53,16 +53,16 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return arraySinger != null ? arraySinger.size() : 0;
+        return SingerInternet != null ? SingerInternet.size() : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         de.hdodenhof.circleimageview.CircleImageView imgSinger;
-        TextView txtSingerName;
+        TextView SingerName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imgSinger = itemView.findViewById(R.id.imageviewnSinger);
-            txtSingerName = itemView.findViewById(R.id.textviewSinger);
+            SingerName = itemView.findViewById(R.id.textviewSinger);
         }
     }
 }

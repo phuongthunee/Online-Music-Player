@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import vn.edu.usth.onlinemusicplayer.SongPlaylist;
-import vn.edu.usth.onlinemusicplayer.model.Search;
+import vn.edu.usth.onlinemusicplayer.model.SearchSong;
 import vn.edu.usth.onlinemusicplayer.R;
 import com.squareup.picasso.Picasso;
 
@@ -20,11 +20,11 @@ import java.util.ArrayList;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder>{
 
     Context context;
-    ArrayList<Song> arraySong;
+    ArrayList<Song> SongInternet;
 
-    public SearchAdapter(Context context, ArrayList<Song> arraySong) {
+    public SearchAdapter(Context context, ArrayList<Song> SongInternet) {
         this.context = context;
-        this.arraySong = arraySong;
+        this.SongInternet = SongInternet;
     }
 
     @NonNull
@@ -37,15 +37,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Song song = arraySong.get(position);
-        holder.txtSearchName.setText(song.getSongName());
-        holder.txtSearchSinger.setText(Song.getSingerName());
+        Song song = SongInternet.get(position);
+        holder.SearchName.setText(song.getSongName());
+        holder.SearchSinger.setText(Song.getSingerName());
         Picasso.get().load(song.getSongImage()).into(holder.imgSearchImage);
     }
 
     @Override
     public int getItemCount() {
-        return arraySong.size();
+        return SongInternet.size();
     }
 
 
@@ -56,15 +56,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtSearchName = itemView.findViewById(R.id.txtSongName);
-            txtSearchSinger = itemView.findViewById(R.id.txtSinger);
+            SearchName = itemView.findViewById(R.id.SongName);
+            SearchSinger = itemView.findViewById(R.id.Singer);
             imgSearchImage = itemView.findViewById(R.id.imgSong);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, PlayMusicActivity.class);
-                    intent.putExtra("Song", arraySong.get(getPosition()));
+                    intent.putExtra("Song", SongInternet.get(getPosition()));
                     context.startActivity(intent);
                 }
             });

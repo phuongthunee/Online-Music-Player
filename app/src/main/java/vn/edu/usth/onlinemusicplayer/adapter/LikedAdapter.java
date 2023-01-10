@@ -21,12 +21,12 @@ import java.util.ArrayList;
 public class LikedAdapter extends RecyclerView.Adapter<LikedAdapter.ViewHolder>{
 
     Context context;
-    ArrayList<likedSong> arrayLikedSong;
+    ArrayList<likedSong> LikedSongInternet;
     View view;
 
-    public LikedAdapter(Context context, ArrayList<LikedSong> arrayLikedSong) {
+    public LikedAdapter(Context context, ArrayList<LikedSong> LikedSongInternet) {
         this.context = context;
-        this.arrayLikedSong = arraylikedSong;
+        this.LikedSongInternet = LikedSongInternet;
     }
 
     @NonNull
@@ -39,15 +39,15 @@ public class LikedAdapter extends RecyclerView.Adapter<LikedAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Model LikedSong = arrayLikedSong.get(position);
-        holder.txtSong.setText(LikedSong.getSongName());
-        holder.txtSinger.setText(LikedSong.getSingerName());
+        Model LikedSong = LikedSongInternet.get(position);
+        holder.Song.setText(LikedSong.getSongName());
+        holder.Singer.setText(LikedSong.getSingerName());
         Picasso.get().load(LikedSong.getSongImage()).into(holder.img);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, PlayMusicActivity.class);
-                intent.putExtra("LikedSong", arrayLikedSong.get(position));
+                intent.putExtra("LikedSong", LikedSongInternet.get(position));
                 context.startActivity(intent);
             }
         });
@@ -55,24 +55,24 @@ public class LikedAdapter extends RecyclerView.Adapter<LikedAdapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
-        return mangbaihatyeuthich.size();
+        return LikedSongInternet.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView img;
-        TextView txtTenBaiHat, txtTenCaSi;
+        TextView TenBaiHat, TenCaSi;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.imgLikedSong);
-            txtSongName = itemView.findViewById(R.id.txtLikedSongName);
-            txtSingerName = itemView.findViewById(R.id.txLikedSinger);
+            SongName = itemView.findViewById(R.id.LikedSongName);
+            SingerName = itemView.findViewById(R.id.LikedSinger);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, PlayNhacActivity.class);
-                    intent.putExtra("LikedSong", arrayLikedSong.get(getAdapterPosition()));
+                    intent.putExtra("LikedSong", LikedSongInternet.get(getAdapterPosition()));
                     context.startActivity(intent);
                 }
             });

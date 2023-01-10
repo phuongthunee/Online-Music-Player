@@ -16,15 +16,15 @@ import vn.edu.usth.onlinemusicplayer.SongPlaylist;
 import vn.edu.usth.onlinemusicplayer.model.Trending;
 import vn.edu.usth.onlinemusicplayer.R;
 import com.squareup.picasso.Picasso;
-
+import java.util.ArrayList;
 public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.ViewHolder> {
     Context context;
-    ArrayList<Trending> trendingInternet;
+    ArrayList <Trending> TrendingInternet;
     View view;
 
     public TrendingAdapter(Context context, ArrayList<Trending> trendingInternet) {
         this.context = context;
-        this.trendingInternet = trendingInternet;
+        this.TrendingInternet = TrendingInternet;
     }
 
     @NonNull
@@ -37,14 +37,14 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Trending Trending = trendingInternet.get(position);
+        Trending Trending = TrendingInternet.get(position);
         holder.TrendingName.setText(Trending.getTrendingName());
-        Picasso.get(/*context*/).load(Trending.getTrendingImage()).into(holder.imgpthinhhanh);
+        Picasso.get(/*context*/).load(Trending.getTrendingImage()).into(holder.imgpTrending);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SongPlaylist.class);
-                intent.putExtra("printTrendingName", trendingInternet.get(position));
+                intent.putExtra("printTrendingName", TrendingInternet.get(position));
                 context.startActivity(intent);
             }
         });
@@ -52,7 +52,7 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return trendingInternet != null ? trendingInternet.size() : 0;
+        return TrendingInternet != null ? TrendingInternet.size() : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
